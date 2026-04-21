@@ -6,7 +6,7 @@ submit.addEventListener('click', fight)
 const winner = (player, cpu) => (player - cpu + 3) %3
 let cpu_wins = 0
 let player_wins = 0
-
+let parcheggi_tot = 0
 function fight() {
   const select = document.getElementById("morra")
   const choice = Number(select.value)
@@ -19,19 +19,25 @@ function fight() {
   {
     console.log("Winner: Player!!")
     player_wins += 1
+    document.querySelector(".playerScore").textContent = player_wins
   }
   else
   {
     console.log("Winner: CPU")
     cpu_wins += 1
+    document.querySelector(".cpuScore").textContent = cpu_wins
+
   }
   if(cpu_wins > player_wins)
     console.log(`La cpu sta vincendo; punti cpu: ${cpu_wins} tu: ${player_wins}`)
   else if (player_wins > cpu_wins)
     console.log(`Stai vincendo; tu: ${player_wins} punti: ${cpu_wins}`)
   else
+  {
     console.log(`Siete in Parcheggio; tu: ${player_wins} punti: ${cpu_wins}`)
-
+    parcheggi_tot += 1
+    document.querySelector(".parcheggi").textContent = parcheggi_tot
+  }
 }
 
 // const array = [0, 1, 2 , 3 ,4 ]

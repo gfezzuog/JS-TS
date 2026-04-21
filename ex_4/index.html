@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Input & Button</title>
+  </head>
+  <body>
+    <!-- Inizio Primo container -->
+    <div class="container-fluid">
+      <!-- Contenitore di Select e Bottone -->
+      <div class="row align-items-center justify-content-center mt-3">
+        <select name="Morra" id="morra" class="col-8">
+          <option value="0">Sasso</option>
+          <option value="1">Carta</option>
+          <option value="2">Forbici</option>
+        </select>
+        <button id="submit" class="btn btn-primary col-6 mt-3">Submit</button>
+      </div>
+
+      <!-- Contenitore punteggio -->
+      <div class="row align-items-center justify-content-center mt3">
+        <!-- Punteggio del giocatore -->
+        <div class="col-6">
+          <p style="text-align: center">
+            Il tuo punteggio è:
+            <span class="playerScore"></span>
+          </p>
+        </div>
+
+        <!-- Punteggio della CPU -->
+        <div class="col-6">
+          <p style="text-align: center">
+            Il punteggio della CPU è:
+            <span class="cpuScore"></span>
+          </p>
+        </div>
+      </div>
+      <!-- Quantità Parcheggi -->
+      <div class="row align-items-center justify-content-center mt3">
+        <p style="text-align: center">
+            Quantità Parcheggi: 
+            <span class="parcheggi"></span>
+          </p>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
