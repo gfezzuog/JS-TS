@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <div class="page">
+    <div class="define-box">
+      <!-- Side Bar -->
+      <div class="sidebar sidebar-S">
+        <!-- Sptfy Icon -->
+        <div class="icn-box">
+          <i class="fab fa-spotify big-icon"
+            ><span class="hide-S">Spotify</span></i
+          >
+        </div>
+
+        <!-- Home, Search, Library -->
+        <div class="be-column">
+          <p>
+            <i class="fas fa-home small-icon margin-l"></i
+            ><span class="margin-lr hide-S">Home</span>
+          </p>
+          <p>
+            <i class="fas fa-search small-icon margin-l"></i
+            ><span class="margin-lr hide-S">Search</span>
+          </p>
+          <p>
+            <i class="fas fa-book small-icon margin-l"></i
+            ><span class="margin-lr hide-S">La tua libreria</span>
+          </p>
+        </div>
+
+        <!-- Playlist -->
+        <h3 class="margin-around margin-l-S">Playlist</h3>
+        <p class="margin-l margin-l-S">
+          <i class="fas fa-plus-square medium-icon"></i
+          ><span hide-S> Crea Playlist </span>
+        </p>
+        <div class="be-column list">
+          <p class="margin-l margin-l-S">Playlist</p>
+          <p class="margin-l margin-l-S">Playlist</p>
+          <p class="margin-l margin-l-S">Playlist</p>
+          <p class="margin-l margin-l-S">Playlist</p>
+          <p class="margin-l margin-l-S">Playlist</p>
+          <p class="margin-l margin-l-S">Playlist</p>
+          <p class="margin-l margin-l-S">Playlist</p>
+          <p class="margin-l margin-l-S">Playlist</p>
+        </div>
+        <p>
+          <i
+            class="fas fa-arrow-circle-down medium-icon"
+            style="margin: 0px 0px"
+          ></i>
+          <span class="hide-S"> Installa App </span>
+        </p>
+        <hr />
+        <p>
+          <i class="fas fa-user-circle big-icon margin-around"></i>
+          <span class="hide-S"> Profilo</span>
+        </p>
+      </div>
+
+      <!-- Main Container -->
+      <div class="main-container main-container-S">
+        <div class="header hide-S">
+          <button class="h-button margin-lr">EFFETTUA L'UPGRADE</button>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main">
+          <!-- Top Menu -->
+          <div class="be-flex-jc" style="flex-grow: 0">
+            <p class="margin-around h-list hide-S">IN EVIDENZA</p>
+            <p class="margin-around h-list hide-S">PODCAST</p>
+            <p class="margin-around h-list hide-S">CLASSIFICHE</p>
+            <p class="margin-around h-list hide-S">GENERI E MOOD</p>
+            <p class="margin-around h-list hide-S">NUOVE USCITE</p>
+            <p class="margin-around h-list hide-S">SCOPRI</p>
+          </div>
+
+          <!-- Horizontal List -->
+          <h3 style="margin-left: 10px"><strong>Recently Played</strong></h3>
+          <!--  -->
+          <app-card-container></app-card-container>
+          <!-- Normal List -->
+          <h3 style="margin: 10px 10px"><strong>Created for You</strong></h3>
+          <div class="be-flex" style="flex-wrap: wrap">
+            <div style="align-items: center">
+              <div
+                class="img-container margin-around"
+                style="
+                  background-image: url(https://i.scdn.co/image/ab67616d0000b273a0c7ce4c5dff167542456733);
+                "
+              ></div>
+              <p class="img-text">Lettera Q</p>
+            </div>
+            <div style="align-items: center">
+              <div
+                class="img-container margin-around"
+                style="
+                  background-image: url(https://i.scdn.co/image/ab67616d0000b2739b37c1d6e9a9fa593545e7fa);
+                "
+              ></div>
+              <p class="img-text">Habitat</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer footer-S">
+          <!-- Left Foot -->
+          <div class="be-flex">
+            <div
+              class="img-container-s margin-around"
+              style="background-image: url(hellvisback.jpg)"
+            ></div>
+            <p class="hide-S" style="align-self: center">
+              Hellvisback
+              <br />
+              Salmo
+            </p>
+            <p class="hide-S" style="align-self: center">
+              <i class="far fa-heart small-icon margin-around"></i>
+              <i class="far fa-folder small-icon"></i>
+            </p>
+          </div>
+
+          <!-- Center Foot -->
+          <div class="be-column margin-around">
+            <div class="be-flex" style="justify-content: space-between">
+              <i class="fas fa-random small-icon margin-around"></i>
+              <i class="fas fa-step-backward small-icon margin-around"></i>
+              <i class="fas fa-play small-icon margin-around"></i>
+              <i class="fas fa-step-forward small-icon margin-around"></i>
+              <i class="fas fa-redo small-icon margin-around"></i>
+            </div>
+            <div class="be-flex">
+              <p style="font-size: 12 px">0.00</p>
+              <div class="duration-bar margin-around"></div>
+              <p style="font-size: 12 px">4.36</p>
+            </div>
+          </div>
+          <!-- Right Foot -->
+          <div class="be-flex margin-around right-foot right-foot-S">
+            <i class="fas fa-th-list small-icon margin-around hide-S"></i>
+            <i class="fas fa-tv small-icon margin-around hide-S"></i>
+            <i class="fas fa-volume-up small-icon margin-around"></i>
+            <div
+              class="duration-bar-small margin-around duration-bar-small-S"
+              ;
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</html>

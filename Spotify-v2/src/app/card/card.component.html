@@ -1,0 +1,14 @@
+<div>
+  <div *ngIf="obj.img"
+    class="img-container margin-around"
+    style="background-image: url({{obj.img}})"
+  ></div>
+  <p class="img-text">{{obj.name}}</p>
+  <div>
+    <form [formGroup]="form" (ngSubmit)="print()">
+      <input type="text" id="nome" name="nome" formControlName="nome">
+      <button type="submit">click</button>
+      
+    </form>
+  </div>
+</div>

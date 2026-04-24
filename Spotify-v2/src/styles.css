@@ -1,0 +1,256 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Kablammo", system-ui;
+}
+
+
+/* div
+{
+    flex-shrink: 0;
+} */
+
+h3,
+p {
+    color: white;
+}
+
+p>div {
+    color: white
+}
+
+/* ----------Flex---------- */
+
+.be-flex-jc {
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.be-flex {
+    display: flex;
+    /* flex-direction: row; */
+    /* flex-grow: 1; */
+}
+
+
+.define-box {
+    flex-grow: 1;
+    min-height: 0;
+    border: solid 1px red;
+    display: flex;
+    background-color: red;
+}
+
+.be-column {
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ----------Parts---------- */
+.sidebar {
+    background-color: #000000;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    /* max-height: 100%; */
+    flex-shrink: 0;
+}
+
+.header {
+    background-color: #080b11;
+    height: 80px;
+    /* flex-grow: 1; */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.main {
+    /* display: flex; */
+    background-color: #151920;
+    flex-grow: 1;
+    overflow-y: scroll;
+    max-width: 100%;
+    /* min-width: 0; */
+}
+
+.main-container {
+    display: flex;
+    flex-grow: 1;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+    min-height: 0;
+    max-width: calc(100vw - 150px);
+
+}
+
+.footer {
+    background-color: #282828;
+    width: calc(100vw - 150px);
+    height: 80px;
+    display: flex;
+    /* flex-grow: 1; */
+    flex-shrink: 0;
+    justify-content: space-between;
+}
+
+.right-foot {
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.footer>div {
+    flex-grow: 1;
+}
+
+/* ---------- Icons ---------- */
+.icn-box {
+    width: 100%;
+    border-radius: 20%;
+    text-align: left;
+    margin: 10px 5px;
+
+
+}
+
+.big-icon {
+    font-size: 32px;
+    color: white;
+}
+
+.medium-icon {
+    font-size: 24px;
+    color: white;
+    /* margin: 10px 10px; */
+    /* font-weight:200; */
+}
+
+.small-icon {
+    font-size: 16px;
+    color: white;
+    /* margin: 10px 10px; */
+    /* font-weight:200; */
+}
+
+/* ---------- lists ---------- */
+
+.h-list {
+    color: #3f454b;
+    font-size: small;
+    /* height: auto; */
+    height: 0;
+}
+
+.h-list:hover {
+    text-decoration: underline;
+    text-decoration-color: yellowgreen;
+    color: white;
+}
+
+.list {
+    flex-grow: 1;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.horizontal-list {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    width: 100%;
+    min-width: 0;
+    flex-shrink: 0;
+}
+
+/* ---------- Margin Utils ---------- */
+
+.margin-around {
+    margin: 10px;
+}
+
+.margin-lr {
+    margin: 0px 10px;
+}
+
+.margin-l {
+    margin-left: 10px;
+}
+
+/* ---------- Button ---------- */
+
+.h-button {
+    background-color: #080b11;
+    border: solid 1px white;
+    color: white;
+    padding: 5px 5px;
+    border-radius: 90px;
+    height: 40px;
+}
+
+.h-button:hover {
+    font-weight: bold;
+    border: solid 2px white;
+}
+
+/* ---------- Images ---------- */
+
+.img-container {
+    height: 256px;
+    width: 256px;
+    background-size: contain;
+    background-position: center;
+    /* border: solid 1px white; */
+    background-repeat: no-repeat;
+    flex-shrink: 0;
+}
+
+.img-container-s {
+    height: 64px;
+    width: 64px;
+    background-size: contain;
+    background-position: center;
+    /* border: solid 1px white; */
+    background-repeat: no-repeat;
+    flex-shrink: 0;
+}
+
+.img-text {
+    text-align: center;
+}
+
+.duration-bar {
+    height: 3px;
+    width: 100%;
+    border: solid 3px gray;
+    border-radius: 180px;
+    margin-top: 10px;
+}
+
+.duration-bar-small {
+    height: 3px;
+    width: 40%;
+    border: solid 3px gray;
+    border-radius: 180px;
+    margin-top: 10px;
+}
+
+/* Colors:
+Sidebar: #000000 
+header: #080b11
+main: #151920
+footer: #282828
+*/
