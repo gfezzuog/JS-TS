@@ -1,0 +1,19 @@
+<div class="row justify-content-center mt-3">
+  <select name="Morra" id="morra" class="col-8" [formControl]="field">
+    <option [value]="i.val" *ngFor="let i of options">{{i.cont}}</option>
+    <!-- value="{{i}}" -->
+    <!-- <option value="1">Carta</option>
+    <option value="2">Forbici</option> -->
+  </select>
+  <button id="submit" class="btn btn-primary col-6 mt-3" (click)="fight()">
+    Submit
+  </button>
+</div>
+<!-- Contenitore punteggio -->
+<app-points-container
+  [playerTotPoints]="playerWins"
+  [cpuTotPoints]="cpuWins"
+  [parTot]="parcheggiTot"
+  [choice]="choice"
+  [enemyChoice]="enemyChoice"
+></app-points-container>

@@ -1,0 +1,27 @@
+<div class="row justify-content-center mt3">
+  <!-- Punteggio del giocatore -->
+  <div class="d-flex col-6 justify-content-center">
+    <p style="text-align: center">
+      Il tuo punteggio è:
+      <span class="playerScore">{{ playerTotPoints }}</span>
+    </p>
+    <img [src]="getPath(choice)" alt="" style="width: 64px; height: 64px" />
+  </div>
+  <!--  -->
+
+  <!-- Punteggio della CPU -->
+  <div class="d-flex col-6 justify-content-center">
+    <p style="text-align: center">
+      Il punteggio della CPU è:
+      <span class="cpuScore">{{ cpuTotPoints }}</span>
+    </p>
+    <img [src]="getPath(enemyChoice)" alt="" style="width: 64px; height: 64px" />
+  </div>
+</div>
+<!-- Quantità Parcheggi -->
+<div class="row justify-content-center mt3">
+  <p style="text-align: center">
+    Quantità Parcheggi:
+    <span class="parcheggi">{{ parTot }}</span>
+  </p>
+</div>
