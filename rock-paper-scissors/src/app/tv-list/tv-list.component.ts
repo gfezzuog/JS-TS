@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { TmdbService } from '../services/tmdb.service';
+import { TvShow } from '../models/tvshow.model';
 
 @Component({
   selector: 'app-tv-list',
@@ -8,13 +9,16 @@ import { TmdbService } from '../services/tmdb.service';
 })
 export class TvListComponent implements OnInit {
   
-  tvShows: any[]= [];
+  tvShows: TvShow[]= new Array();
   page: number = 1;
+  @Output() pippo = new EventEmitter<any>();
+
 
   constructor(private tmdbService: TmdbService) { }
 
   ngOnInit(): void {
     this.loadTvShows()
+    this.pippo.emit('')
   }
 
   loadTvShows(): void
@@ -22,6 +26,7 @@ export class TvListComponent implements OnInit {
     this.tmdbService.getPopularTvShows(this.page).subscribe(
       (res) => {
         this.tvShows = res.results;
+        console.log(this.tvShows)
       },
       (err) => {
         console.error("Error API", err);

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
+import { TvShow } from '../models/tvshow.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class TmdbService {
 
   constructor(private http: HttpClient) {}
 
-  getPopularTvShows(page: number = 1): Observable<any> {
-    return this.http.get(
+  getPopularTvShows(page: number = 1): Observable<{page: number, results: TvShow[],total_pages: number, total_results: number}> {
+    return this.http.get<any>(
       `${this.apiUrl}/tv/popular`,
       {
         headers: this.headers,

@@ -8,6 +8,7 @@ import { FormRpsComponent } from './form-rps/form-rps.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PointsContainerComponent } from './points-container/points-container.component';
 import { TvListComponent } from './tv-list/tv-list.component';
+import { RoutingTestComponent } from './routing-test/routing-test.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { TvListComponent } from './tv-list/tv-list.component';
     FormRpsComponent,
     PointsContainerComponent,
     TvListComponent,
+    RoutingTestComponent,
   ],
   imports: [
     FormsModule,
