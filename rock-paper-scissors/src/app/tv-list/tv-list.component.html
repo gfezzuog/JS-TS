@@ -1,0 +1,19 @@
+<div>
+    <!-- Buttons -->
+  <button (click)="previousPage()" class="btn btn-secondary m-1" [disabled]="page === 1">Previous page</button>
+  <button (click)="nextPage()" class="btn btn-primary m-1">Next page</button>
+
+  <!-- List for tvShows -->
+  <div *ngFor="let tv of tvShows">
+    <h3>{{ tv.name }}</h3>
+    <p>{{ tv.overview }}</p>
+
+    <img
+      *ngIf="tv.poster_path"
+      [src]="'https://image.tmdb.org/t/p/w300' + tv.poster_path"
+      alt="{{ tv.name }}"
+    />
+    <hr />
+  </div>
+
+</div>
