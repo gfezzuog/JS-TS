@@ -1,0 +1,22 @@
+<div *ngIf="loader; else tvShowTemplate" style="overflow-y: scroll;">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+<ng-template #tvShowTemplate >
+  <div *ngIf="tvShow" style="overflow-y: scroll; height: calc(100vh - 80px);">
+    <h1>{{ tvShow.name }}</h1>
+
+    <p>{{ tvShow.overview }}</p>
+    <div>
+      <img
+        *ngIf="tvShow.poster_path"
+        [src]="'https://image.tmdb.org/t/p/w500' + tvShow.poster_path"
+        [alt]="tvShow.name"
+      />
+    </div>
+  </div>
+</ng-template>
+
+<!-- <ng-container></ng-container> Non serve dare nome -->
+<!-- <ng-template #tvShowTemplate> Serve dare un nome dopo # -->

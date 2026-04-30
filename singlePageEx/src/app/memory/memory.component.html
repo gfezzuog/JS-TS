@@ -1,0 +1,17 @@
+<div
+  class="container-fluid d-flex"
+  style="overflow-y: scroll; height: calc(100vh - 80px)"
+>
+  <div class="row">
+    <div *ngFor="let card of memoryMatrix; let i = index" class="col-3">
+      <app-img-card
+        [imgId]="card.id"
+        [imgPath]="card.path"
+        [flipped]="card.flipped"
+        [matched]="card.matched"
+        (cardClicked)="onCardSelected(i)"
+      >
+      </app-img-card>
+    </div>
+  </div>
+</div>

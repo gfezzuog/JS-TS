@@ -1,0 +1,58 @@
+<div>
+  <div class="row justify-content-center mt-3">
+    <select
+      name="Morra"
+      id="morra"
+      class="col-8 soft-rainbow gradient-text-animated rounded-pill"
+      [formControl]="field"
+    >
+      <option style="color: black" [value]="i.val" *ngFor="let i of options">
+        {{ i.cont }}
+      </option>
+    </select>
+    <button
+      id="submit"
+      class="btn btn-primary col-6 mt-3 soft-rainbow gradient-text-animated rounded-pill"
+      (click)="fight()"
+    >
+      Submit
+    </button>
+  </div>
+</div>
+
+<!-- Points container -->
+<div class="row justify-content-center mt-5">
+  <!-- Punteggio del giocatore -->
+  <div class="col-6">
+    <p style="text-align: center">
+      Il tuo punteggio è:
+      <span class="playerScore">{{ playerWins }}</span>
+    </p>
+    <div class="d-flex col-12 justify-content-center">
+      <img [src]="getPath(choice)" alt="" style="width: 64px; height: 64px" />
+    </div>
+  </div>
+  <!--  -->
+
+  <!-- Punteggio della CPU -->
+  <div class=" col-6 justify-content-center">
+    <p style="text-align: center">
+      Il punteggio della CPU è:
+      <span>{{ cpuWins }}</span>
+    </p>
+    <div class="d-flex col-12 justify-content-center">
+      <img [src]="getPath(enemyChoice)" alt="" style="width: 64px; height: 64px" />
+    </div>
+  </div>
+</div>
+<!-- Quantità Parcheggi -->
+<div class="row justify-content-center mt3">
+  <p style="text-align: center">
+    Quantità Parcheggi:
+    <span>{{ parcheggiTot }}</span>
+  </p>
+</div>
+
+<!-- <select name="Morra" id="morra" class="col-8" [formControl]="field"> -->
+<!-- <button id="submit" class="btn btn-primary col-6 mt-3" (click)="fight()"></button> -->
+<!-- <option [value]="i.val" *ngFor="let i of options">{{i.cont}}</option> -->

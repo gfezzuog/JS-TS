@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <app-header></app-header>
+  <div
+    class="row"
+    style="background-color: rgb(51, 51, 51)"
+  >
+    <div class="sideBar col-2">
+      <app-sideBar></app-sideBar>
+    </div>
+
+    <div class="col-10 soft-rainbow" style="overflow-y: hidden;">
+      <router-outlet></router-outlet>
+      <!-- <app-rps-game></app-rps-game> -->
+    </div>
+  </div>
+</div>
