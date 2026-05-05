@@ -9,10 +9,11 @@
   <div *ngFor="let tv of tvShows">
     <h3>{{ tv.name }}</h3>
     <p>{{ tv.overview }}</p>
+    <p>{{ tv.first_air_date | test }}</p>
 
     <img
       *ngIf="tv.poster_path"
-      [src]="'https://image.tmdb.org/t/p/w300' + tv.poster_path"
+      [src]="tv.poster_path | imgPipe: 'M'"
       alt="{{ tv.name }}"
     />
     <button [routerLink]="['/tv', tv.id]" class="btn btn-primary soft-rainbow mt-3"><span class="gradient-text-animated">Details</span></button>
@@ -20,3 +21,4 @@
   </div>
 
 </div>
+      <!-- [src]="'https://image.tmdb.org/t/p/w300' + tv.poster_path" -->

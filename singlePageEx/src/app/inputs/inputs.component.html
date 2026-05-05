@@ -1,0 +1,48 @@
+<form [formGroup]="movie">
+  <div class="row">
+    <div class="form-group col-12">
+      <label for="Name">Nome<span *ngIf="movie.get('name')?.invalid"> ! </span></label>
+      <input
+        type="text"
+        name="Name"
+        class="form-control"
+        formControlName="name"
+      />
+    </div>
+    <div class="form-group col-12">
+      <label for="Adult">Sei adulto?</label>
+      <input
+        type="checkbox"
+        name="Adult"
+        
+        formControlName="adult"
+      />
+    </div>
+    <div class="form-group col-12">
+      <label for="OriginalName">Nome Originale<span *ngIf="movie.get('original_name')?.invalid"> ! </span></label>
+      <input
+        type="text"
+        name="OriginalName"
+        class="form-control"
+        formControlName="original_name"
+      />
+    </div>
+    <div class="form-group col-12">
+      <label for="Popularity">Popularity<span *ngIf="movie.get('popularity')?.invalid"> ! </span></label>
+      <input
+        type="text"
+        name="Popularity"
+        class="form-control"
+        formControlName="popularity"
+      />
+    </div>
+</div>
+<button class="btn btn-primary" (click)="print()" [disabled]="movie.invalid">Submit</button>
+
+</form>
+
+<!-- <input type="text" formControlName="name" />
+<input type="checkbox" formControlName="adult" />
+<input type="text" formControlName="original_name" />
+<input type="text" formControlName="popularity" /> -->
+<!-- class="form-control" -->

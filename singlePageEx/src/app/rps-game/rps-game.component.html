@@ -26,7 +26,7 @@
   <div class="col-6">
     <p style="text-align: center">
       Il tuo punteggio è:
-      <span class="playerScore">{{ playerWins }}</span>
+      <span appTest [pointColor]="playerWins">{{playerWins | number}}</span>
     </p>
     <div class="d-flex col-12 justify-content-center">
       <img [src]="getPath(choice)" alt="" style="width: 64px; height: 64px" />
@@ -38,7 +38,7 @@
   <div class=" col-6 justify-content-center">
     <p style="text-align: center">
       Il punteggio della CPU è:
-      <span>{{ cpuWins }}</span>
+      <span appTest [pointColor]="cpuWins">{{ cpuWins | number}}</span>
     </p>
     <div class="d-flex col-12 justify-content-center">
       <img [src]="getPath(enemyChoice)" alt="" style="width: 64px; height: 64px" />

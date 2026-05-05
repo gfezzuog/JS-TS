@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TmdbService } from '../services/tmdb.service';
 import { TvShow } from '../models/tvshow.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tv-show-details',
@@ -11,8 +12,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class TvShowDetailsComponent implements OnInit {
 
-  tvShow!: TvShow;
+  tvShow!: any;
   loader: boolean = true;
+  osservabile$!: Observable<any>;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,7 +29,7 @@ export class TvShowDetailsComponent implements OnInit {
     }
 
     const tvId = Number(idParam);
-    
+    this.osservabile$ = this.tmdbService.getTvShowCredits(tvId)
     // Chiamata API per il valore tvID passato
     this.tmdbService.getTvShowDetails(tvId).subscribe({
       next: (data) => {
@@ -37,14 +39,14 @@ export class TvShowDetailsComponent implements OnInit {
         console.error('Errore API:', err.message);
       },
       complete: () => {
-        // setTimeout(() => {
            this.loader = false
             console.log("PERFORZA")
-        // }, 5000);
-        // console.log("COMPLETE")
-       
       }
     });
   }
 }
-``
+//  setTimeout(() => {
+          //  this.loader = false
+            // console.log("PERFORZA")
+        // }, 5000);
+        // console.log("COMPLETE")

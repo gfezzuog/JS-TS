@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TmdbService } from './services/tmdb.service';
 
 import { AppComponent } from './app.component';
@@ -15,6 +15,12 @@ import { TvShowDetailsComponent } from './tv-show-details/tv-show-details.compon
 import { MemoryComponent } from './memory/memory.component';
 import { ImgCardComponent } from './img-card/img-card.component';
 import { TestDirective } from './directives/test.directive';
+import { TestPipe } from './pipes/test.pipe';
+import { ImgPipePipe } from './pipes/img-pipe.pipe';
+import { LoginComponent } from './login/login.component';
+import { AuthInterceptor } from './auths/auth.interceptor';
+import { InputsComponent } from './inputs/inputs.component';
+import { CustomValidatorsDirective } from './custom-validators.directive';
 
 @NgModule({
   declarations: [
@@ -26,7 +32,12 @@ import { TestDirective } from './directives/test.directive';
     TvShowDetailsComponent,
     MemoryComponent,
     ImgCardComponent,
-    TestDirective
+    TestDirective,
+    TestPipe,
+    ImgPipePipe,
+    LoginComponent,
+    InputsComponent,
+    CustomValidatorsDirective,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +47,13 @@ import { TestDirective } from './directives/test.directive';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

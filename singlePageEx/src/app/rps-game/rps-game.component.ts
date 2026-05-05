@@ -16,6 +16,7 @@ export class RpsGameComponent implements OnInit {
   choice: number = 0;
   enemyChoice: number = 0;
 
+
   // Options container
   options = [
     {val: 0, cont: "Sasso",},
