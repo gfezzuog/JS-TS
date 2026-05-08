@@ -1,4 +1,4 @@
-<div style="overflow-y: scroll; height: 80vh">
+<div style="overflow-y: scroll; height: calc(100vh - 80px)">
   <form [formGroup]="movieForm">
     <h1 *ngIf="tvShow" style="margin-left: 25px">{{ tvShow.name }}</h1>
     <div
@@ -39,12 +39,12 @@
           <label for="Generi">Generi: </label>
           <select [compareWith]="comparison" name="Generi" id="" *ngIf="tvGenres" style="width: 100%" formControlName="genres">
             <option [value]="null">Seleziona il genere</option>
-            <!-- <option
+            <option
               *ngFor="let genre of tvGenres.genres"
               [ngValue]="genre"
               [label]="genre.name"
-            ></option> -->
-            <option value="Pippo">Pippo</option>
+            ></option>
+            <!-- <option value="Pippo">Pippo</option> -->
           </select>
         </div>
 

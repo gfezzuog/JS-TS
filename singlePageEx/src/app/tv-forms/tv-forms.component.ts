@@ -45,7 +45,7 @@ export class TvFormsComponent implements OnInit {
         // res.first_air_date = JSON.stringify(new Date());
         this.tvShow = res;
         this.tvShow.genres = (res.genres as any)[0]
-        console.log( 'perforza di cose',this.tvShow.genres)
+        console.log( 'perforza di cose',this.tvShow.adult)
         // console.log(res.genres)
         this.imageUrl = 'https://image.tmdb.org/t/p/w780' + res.backdrop_path;
         this.movieForm.patchValue(this.tvShow);
