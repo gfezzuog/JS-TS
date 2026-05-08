@@ -17,6 +17,7 @@
       alt="{{ tv.name }}"
     />
     <button [routerLink]="['/tv', tv.id]" class="btn btn-primary soft-rainbow mt-3"><span class="gradient-text-animated">Details</span></button>
+    <button (click)="goToDetails(tv)" class="btn btn-primary soft-rainbow mt-3"><span class="gradient-text-animated">Matita</span></button>
     <hr />
   </div>
 

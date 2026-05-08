@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auths/auth.interceptor';
 import { InputsComponent } from './inputs/inputs.component';
+import { TvFormsComponent } from './tv-forms/tv-forms.component';
 
 
 // providers: [
@@ -45,6 +46,10 @@ const routes: Routes = [
   {
     path: 'inputs',
     component: InputsComponent
+  },
+  {
+    path: 'tv-forms/:id',
+    component: TvFormsComponent
   },
   {
     path: '**',

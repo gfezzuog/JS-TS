@@ -20,7 +20,10 @@ import { ImgPipePipe } from './pipes/img-pipe.pipe';
 import { LoginComponent } from './login/login.component';
 import { AuthInterceptor } from './auths/auth.interceptor';
 import { InputsComponent } from './inputs/inputs.component';
-import { CustomValidatorsDirective } from './custom-validators.directive';
+import { CustomValidatorsDirective } from './directives/custom-validators.directive';
+import { TvFormsComponent } from './tv-forms/tv-forms.component';
+import { StringByObjectArrayPipe } from './pipes/string-by-object-array.pipe';
+import { TvFormValidatorDirective } from './directives/tv-form-validator.directive';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import { CustomValidatorsDirective } from './custom-validators.directive';
     LoginComponent,
     InputsComponent,
     CustomValidatorsDirective,
+    TvFormsComponent,
+    StringByObjectArrayPipe,
+    TvFormValidatorDirective,
   ],
   imports: [
     BrowserModule,
