@@ -25,8 +25,13 @@ export class TvFormsComponent implements OnInit {
       Validators.required,
       TvFormValidatorDirective.checkDate,
     ]),
-    popularity: new FormControl(null, [Validators.required, Validators.min(100), Validators.max(600)]),
+    popularity: new FormControl(null, [
+      Validators.required,
+      Validators.min(100),
+      Validators.max(600),
+    ]),
     overview: new FormControl(null, [Validators.required]),
+    original_language: new FormControl(null, [Validators.maxLength(2)])
   });
 
   /* ----------------------------------- */
@@ -38,14 +43,19 @@ export class TvFormsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
+    this.movieForm.get('last_air_date')?.valueChanges.subscribe((pippo)=> {
+      console.log(pippo)
+    })
+
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
       this.tmdbService.getTvShowDetails(id).subscribe((res) => {
         // res.adult = true;
         // res.first_air_date = JSON.stringify(new Date());
         this.tvShow = res;
-        this.tvShow.genres = (res.genres as any)[0]
-        console.log( 'perforza di cose',this.tvShow.adult)
+        this.tvShow.genres = (res.genres as any)[0];
+        console.log('perforza di cose', this.tvShow.adult);
         // console.log(res.genres)
         this.imageUrl = 'https://image.tmdb.org/t/p/w780' + res.backdrop_path;
         this.movieForm.patchValue(this.tvShow);
@@ -59,16 +69,16 @@ export class TvFormsComponent implements OnInit {
     });
 
     /* ----------------------------------- */
+
   }
 
   print() {
-    console.log(this.movieForm.value)
+    console.log(this.movieForm.value);
   }
 
-  comparison(obj1: any, obj2: any): boolean{
-    return obj1 && obj2 ? obj1.id === obj2.id : obj1 === obj2
+  comparison(obj1: any, obj2: any): boolean {
+    return obj1 && obj2 ? obj1.id === obj2.id : obj1 === obj2;
   }
-
 }
 // console.log(this.tvShow.backrop_path);
 // this.movieForm.setValue(this.tvShow)

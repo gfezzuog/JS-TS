@@ -4,7 +4,7 @@
     <div
       *ngIf="imageUrl"
       [ngStyle]="{ 'background-image': 'url(' + imageUrl + ')' }"
-      class="col-6 mt-3"
+      class="col-6 mx-auto rounded-pill"
       style="width: 780px; height: 439px; margin-left: 25px"
     ></div>
 
@@ -54,11 +54,18 @@
         </div>
 
         <!-- Adult -->
-        <div class="form-group col-6">
-          <!-- <label>18+</label>
-          <input type="checkbox" formControlName="adult" /> -->
-          <app-input-check-box [form]="movieForm" [inputModel]="{controlName: 'adult', label:'18+', type: 'checkbox'}"></app-input-check-box>
-          
+        <div class="form-group col-3">
+          <app-input-check-box
+            [form]="movieForm"
+            [inputModel]="{
+              controlName: 'adult',
+              label: '18+',
+              type: 'checkbox'
+            }"
+          ></app-input-check-box>
+        </div>
+        <div class="form-group col-3">
+          <app-input-text [form]="movieForm" [inputModel]="{controlName:'original_language', label:'original_language', type:'text' }"> </app-input-text>
         </div>
       </div>
     </div>

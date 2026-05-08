@@ -1,11 +1,20 @@
-<label for="inputText"
-  >{{ inputModel.label
-  }}<span *ngIf="form.get(inputModel.controlName).invalid">! </span></label
->
-<input
-  [type]="inputModel.type"
-  name="inputText"
-  id=""
-  class="form-control"
-  [formControl]="form.get(inputModel.controlName)"
-/>
+<div class="form-floating my-3">
+  <input
+    [type]="inputModel.type"
+    name="inputText"
+    id="inputText"
+    class="form-control"
+    placeholder="000000000000000"
+    [formControl]="form.get(inputModel.controlName)"
+    [step]="inputModel.step"
+    [min]="inputModel.min"
+    [max]="inputModel.max"
+  />
+  <label class="form-label" for="inputText"> {{ inputModel.label }} 
+    <span>
+      {{form.get(inputModel.controlName).value | errorLabel: form.get(inputModel.controlName)}}
+    </span>
+  </label>
+</div>
+
+<!-- <span> {{formUtils.errorLabel(form.get(inputModel.controlName))}} </span> -->

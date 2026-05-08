@@ -2,6 +2,7 @@
 <input
   [type]="inputModel.type"
   [formControl]="form.get(inputModel.controlName)"
+  readonly
 />
 <p *ngIf="form.get(inputModel.controlName)?.value">
   Il seguente prodotto è destinto ad un pubblico adulto
