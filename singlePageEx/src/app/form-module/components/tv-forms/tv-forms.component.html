@@ -1,0 +1,67 @@
+<div style="overflow-y: scroll; height: calc(100vh - 80px)">
+  <form [formGroup]="movieForm">
+    <h1 *ngIf="tvShow" style="margin-left: 25px">{{ tvShow.name }}</h1>
+    <div
+      *ngIf="imageUrl"
+      [ngStyle]="{ 'background-image': 'url(' + imageUrl + ')' }"
+      class="col-6 mt-3"
+      style="width: 780px; height: 439px; margin-left: 25px"
+    ></div>
+
+    <!-- Contrainer Fluid start -->
+    <div class="container-fluid">
+      <div class="row align-items-center justify-content-between">
+        <!-- Popularity -->
+        <div class="form-group col-3">
+          <app-input-text
+            [form]="movieForm"
+            [inputModel]="{
+              controlName: 'popularity',
+              label: 'Popularity',
+              type: 'number'
+            }"
+          ></app-input-text>
+        </div>
+
+        <!-- Last Air Date -->
+        <div class="form-group col-3">
+          <app-input-text
+            [form]="movieForm"
+            [inputModel]="{
+              controlName: 'last_air_date',
+              label: 'Last Air Date',
+              type: 'date'
+            }"
+          ></app-input-text>
+        </div>
+
+        <!-- Generi -->
+        <div class="form-group col-3">
+          <app-input-select
+            [form]="movieForm"
+            [inputModel]="{ controlName: 'genres', label: 'Generi', type: '' }"
+            [options]="tvGenres ? tvGenres.genres : []"
+            [compareWith]="comparison"
+          ></app-input-select>
+        </div>
+
+        <!-- Overview -->
+        <div class="form-group col-6 my-3">
+          <app-input-text-area
+            [form]="movieForm"
+            [inputModel]="{ controlName: 'overview', label: '', type: '' }"
+          ></app-input-text-area>
+        </div>
+
+        <!-- Adult -->
+        <div class="form-group col-6">
+          <!-- <label>18+</label>
+          <input type="checkbox" formControlName="adult" /> -->
+          <app-input-check-box [form]="movieForm" [inputModel]="{controlName: 'adult', label:'18+', type: 'checkbox'}"></app-input-check-box>
+          
+        </div>
+      </div>
+    </div>
+  </form>
+  <button class="btn btn-primary" (click)="print()">Pulsante</button>
+</div>

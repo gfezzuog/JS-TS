@@ -1,0 +1,11 @@
+<label for="inputText"
+  >{{ inputModel.label
+  }}<span *ngIf="form.get(inputModel.controlName).invalid">! </span></label
+>
+<input
+  [type]="inputModel.type"
+  name="inputText"
+  id=""
+  class="form-control"
+  [formControl]="form.get(inputModel.controlName)"
+/>

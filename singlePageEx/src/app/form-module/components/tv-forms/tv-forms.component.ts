@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TmdbService } from '../services/tmdb.service';
-import { TvShow } from '../models/tvshow.model';
+import { TmdbService } from '../../../services/tmdb.service';
+import { TvShow } from '../../../models/tvshow.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TvGenresResponse } from '../models/tvgenre.model';
-import { TvFormValidatorDirective } from '../directives/tv-form-validator.directive';
+import { TvGenresResponse } from '../../../models/tvgenre.model';
+import { TvFormValidatorDirective } from '../../../directives/tv-form-validator.directive';
 
 @Component({
   selector: 'app-tv-forms',

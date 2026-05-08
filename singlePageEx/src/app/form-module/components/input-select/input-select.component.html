@@ -1,0 +1,16 @@
+<label for="{{inputModel.controlName}}">{{ inputModel.label }}<span *ngIf="form.get(inputModel.controlName).invalid">!</span></label>
+<select
+  [compareWith]="compareWith"
+  name="{{inputModel.controlName}}"
+  id="{{inputModel.controlName}}"
+  style="width: 100%"
+  [formControl]="form.get(inputModel.controlName)"
+  *ngIf="options"
+>
+  <option [value]="null">Seleziona {{ inputModel.label }}</option>
+  <option
+    *ngFor="let option of options"
+    [ngValue]="option"
+    [label]="option.name"
+  ></option>
+</select>

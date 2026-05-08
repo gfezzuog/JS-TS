@@ -6,10 +6,8 @@ import { TvShowDetailsComponent } from './tv-show-details/tv-show-details.compon
 import { MemoryComponent } from './memory/memory.component';
 import { AuthGuard } from './auths/auth.guard';
 import { LoginComponent } from './login/login.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './auths/auth.interceptor';
 import { InputsComponent } from './inputs/inputs.component';
-import { TvFormsComponent } from './tv-forms/tv-forms.component';
+import { TvFormsComponent } from './form-module/components/tv-forms/tv-forms.component';
 
 
 // providers: [
