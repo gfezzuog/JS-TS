@@ -6,7 +6,7 @@ import { FormControl } from '@angular/forms';
 })
 export class ErrorLabelPipe implements PipeTransform {
   transform(value: any, control: FormControl): string {
-    console.log('pippo per forza');
+    // console.log('pippo per forza');
     if (control.invalid && !value) {
       return '*';
     } else if (control.invalid) {

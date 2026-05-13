@@ -1,0 +1,276 @@
+<div
+  style="
+    overflow-y: scroll;
+    height: calc(100vh - 80px);
+    background-color: aliceblue;
+  "
+>
+  <form [formGroup]="unilavForm">
+    <div class="container-fluid form-group">
+      <div class="row align">
+        <!-- PRIMA RIGA -->
+        <!-- Cognome -->
+        <div class="col-6 form-group">
+          <app-input-text
+            [form]="unilavForm"
+            [inputModel]="{
+              controlName: 'cognome',
+              label: 'Cognome',
+              type: 'text'
+            }"
+          ></app-input-text>
+        </div>
+
+        <!-- Nome -->
+        <div class="col-6 form-group">
+          <app-input-text
+            [form]="unilavForm"
+            [inputModel]="{
+              controlName: 'nome',
+              label: 'Nome',
+              type: 'text'
+            }"
+          ></app-input-text>
+        </div>
+
+        <!-- SECONDA RIGA -->
+        <!-- Codice Fiscale -->
+        <div class="col-6 form-group">
+          <app-input-text
+            [form]="unilavForm"
+            [inputModel]="{
+              controlName: 'cf',
+              label: 'Codice Fiscale',
+              type: 'text'
+            }"
+          ></app-input-text>
+        </div>
+
+        <!-- Sesso -->
+        <div class="col-3 form-group">
+          <app-input-select
+            [form]="unilavForm"
+            [inputModel]="{ controlName: 'sesso', label: 'Sesso', type: '' }"
+            [options]="[{ name: 'M' }, { name: 'F' }, { name: 'altro' }]"
+            [compareWith]="comparison"
+          ></app-input-select>
+        </div>
+        <!-- Data di Nascita -->
+        <div class="col-3 form-group">
+          <app-input-date
+            [form]="unilavForm"
+            [inputDate]="{
+              controlName: 'dataNascita',
+              label: 'Data di Nascita'
+            }"
+          ></app-input-date>
+        </div>
+
+        <!-- TERZA RIGA -->
+        <!-- Comune di nascita -->
+        <div class="col-3 form-group">
+          <app-input-text
+            [form]="unilavForm"
+            [inputModel]="{
+              controlName: 'comuneNascita',
+              label: 'Comune (O stato estero) di Nascita',
+              type: 'text'
+            }"
+          ></app-input-text>
+        </div>
+
+        <!-- Cittadinanza -->
+        <div class="col-3 form-group">
+          <app-input-select
+            [form]="unilavForm"
+            [inputModel]="{
+              controlName: 'cittadinanza',
+              label: 'Cittadinanza',
+              type: ''
+            }"
+            [options]="[
+              { name: 'Italia', region: 'eu' },
+              { name: 'Belgio', region: 'eu' },
+              { name: 'America', region: 'na' }
+            ]"
+            [compareWith]="comparison"
+          ></app-input-select>
+        </div>
+
+        <!-- Livello d'istruzione -->
+        <div class="col-6 form-group">
+          <app-input-select
+            [form]="unilavForm"
+            [inputModel]="{
+              controlName: 'istruzione',
+              label: 'Livello istruzione',
+              type: ''
+            }"
+            [options]="[
+              { name: 'Diploma' },
+              { name: 'Laurea' },
+              { name: 'Magistrale' }
+            ]"
+            [compareWith]="comparison"
+          ></app-input-select>
+        </div>
+        <!-- QUARTA RIGA -->
+        <!-- Comune di Domicilio -->
+        <div class="col-4 form-group">
+          <app-input-text
+            [form]="unilavForm"
+            [inputModel]="{
+              controlName: 'comuneDomicilio',
+              label: 'Comune di Domicilio',
+              type: 'text'
+            }"
+          ></app-input-text>
+        </div>
+
+        <!-- CAP -->
+        <div class="col-3 form-group">
+          <app-input-text
+            [form]="unilavForm"
+            [inputModel]="{
+              controlName: 'cap',
+              label: 'CAP',
+              type: 'text'
+            }"
+          ></app-input-text>
+        </div>
+
+        <!-- Indirizzo di Domicilio -->
+        <div class="col-5 form-group">
+          <app-input-text
+            [form]="unilavForm"
+            [inputModel]="{
+              controlName: 'indirizzoDomicilio',
+              label: 'Indirizzo di Domicilio',
+              type: 'text'
+            }"
+          ></app-input-text>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inizio Titoli di Soggiorno -->
+    <div class="container-fluid form-group" *ngIf="!europe">
+      <div class="row align">
+        <!-- Prima riga TitSogg -->
+         <!-- Numero dtitolo di soggiorno -->
+        <div class="col-3 form-group">
+          <app-input-text
+            [form]="unilavForm"
+            [inputModel]="{
+              controlName: 'nTitSogg',
+              label: 'Numero titolo di soggiorno',
+              type: 'number'
+            }"
+          ></app-input-text>
+        </div>
+
+        <!-- Titolo di Soggiorno -->
+        <div class="col-6 form-group">
+          <app-input-select
+            [form]="unilavForm"
+            [inputModel]="{
+              controlName: 'titoloSogg',
+              label: 'Titolo di soggiorno',
+              type: ''
+            }"
+            [options]="[
+              { name: 'In Rinnovo' },
+              { name: 'Permesso' },
+              { name: 'In attesa' }
+            ]"
+            [compareWith]="comparison"
+          ></app-input-select>
+        </div>
+
+        <!-- Scadenza titolo di soggiorno -->
+         <div class="col-3 form-group">
+          <app-input-date
+            [form]="unilavForm"
+            [inputDate]="{
+              controlName: 'scadenzaTitSogg',
+              label: 'Scadenza Titolo di soggiorno'
+            }"
+          ></app-input-date>
+        </div>
+
+        <!-- Motivo titolo di soggiorno -->
+        <div class="col-6 form-group">
+          <app-input-select
+            [form]="unilavForm"
+            [inputModel]="{
+              controlName: 'motivoTitSogg',
+              label: 'Motivo titolo di soggiorno',
+              type: ''
+            }"
+            [options]="[
+              { name: 'Calamità naturali' },
+              { name: 'Adozione' },
+              { name: 'Asilo' }
+            ]"
+            [compareWith]="comparison"
+          ></app-input-select>
+        </div>
+
+        <!-- Questura che ha rilasciato il titolo di soggiorno -->
+        <div class="col-6 form-group">
+          <app-input-select
+            [form]="unilavForm"
+            [inputModel]="{
+              controlName: 'questuraTitSogg',
+              label: 'Questura che ha rilasciato il titolo di soggiorno',
+              type: ''
+            }"
+            [options]="[
+              { name: 'Roma' },
+              { name: 'Napoli' },
+              { name: 'Milano' }
+            ]"
+            [compareWith]="comparison"
+          ></app-input-select>
+        </div>
+
+        <!-- Sussistenza della sistetemazione alloggiativa -->
+        <div class="col-6 form-group">
+          <app-input-select
+            [form]="unilavForm"
+            [inputModel]="{
+              controlName: 'sussistenzaAlloggio',
+              label: 'Sussistenza della sistetemazione alloggiativa',
+              type: ''
+            }"
+            [options]="[
+              { name: 'SI' },
+              { name: 'NO' },
+              { name: 'Non lo so' }
+            ]"
+            [compareWith]="comparison"
+          ></app-input-select>
+        </div>
+
+        <!-- Impegno del datore di alvoro al pagamento delle spese per il rimpatrio -->
+        <div class="col-6 form-group">
+          <app-input-select
+            [form]="unilavForm"
+            [inputModel]="{
+              controlName: 'speseRimpatrioDatLav',
+              label: 'Impegno del datore di alvoro al pagamento delle spese per il rimpatrio',
+              type: ''
+            }"
+            [options]="[
+              { name: 'In Rinnovo' },
+              { name: 'Permesso' },
+              { name: 'In attesa' }
+            ]"
+            [compareWith]="comparison"
+          ></app-input-select>
+        </div>
+      </div>
+    </div>
+    <button (click)="print()">Click {{unilavForm.valid}}</button>
+  </form>
+</div>

@@ -26,9 +26,7 @@ export class TvFormValidatorDirective {
     }
     const today: Date = new Date('2026-01-01');
     const tvDate: Date = new Date(control.value);
-    if (today < tvDate) {
-      return { invalidDate: true };
-    }
+  
     return null;
   }
 

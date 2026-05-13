@@ -8,6 +8,7 @@ import { AuthGuard } from './auths/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { InputsComponent } from './inputs/inputs.component';
 import { TvFormsComponent } from './form-module/components/tv-forms/tv-forms.component';
+import { UNILAVComponent } from './form-module/components/unilav/unilav.component';
 
 
 // providers: [
@@ -48,6 +49,10 @@ const routes: Routes = [
   {
     path: 'tv-forms/:id',
     component: TvFormsComponent
+  },
+  {
+    path: 'UNILAV',
+    component: UNILAVComponent
   },
   {
     path: '**',

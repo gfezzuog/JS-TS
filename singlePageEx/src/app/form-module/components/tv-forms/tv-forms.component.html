@@ -11,6 +11,7 @@
     <!-- Contrainer Fluid start -->
     <div class="container-fluid">
       <div class="row align-items-center justify-content-between">
+        
         <!-- Popularity -->
         <div class="form-group col-3">
           <app-input-text
@@ -25,14 +26,15 @@
 
         <!-- Last Air Date -->
         <div class="form-group col-3">
-          <app-input-text
+          <app-input-date
             [form]="movieForm"
-            [inputModel]="{
+            [inputDate]="{
               controlName: 'last_air_date',
               label: 'Last Air Date',
-              type: 'date'
+              min: formUtils.getMinDate(),
+              max: formUtils.getMaxDate()
             }"
-          ></app-input-text>
+          ></app-input-date>
         </div>
 
         <!-- Generi -->

@@ -9,6 +9,8 @@ import { InputCheckBoxComponent } from './components/input-check-box/input-check
 import { LabelsForEveryoneComponent } from './components/labels-for-everyone/labels-for-everyone.component';
 import { ErrorLabelPipe } from './pipes/error-label.pipe';
 import { InputDateComponent } from './components/input-date/input-date.component';
+import { UNILAVComponent } from './components/unilav/unilav.component';
+import { CheckCittadinanzaPipe } from './components/pipes/check-cittadinanza.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { InputDateComponent } from './components/input-date/input-date.component
     LabelsForEveryoneComponent,
     ErrorLabelPipe,
     InputDateComponent,
+    UNILAVComponent,
+    CheckCittadinanzaPipe,
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,15 @@
-<div class="form-floating my-3">
+<div class="my-3">
+  <label class="form-label" for="inputText">
+    {{ inputDate?.label }}
+    <span>
+      {{
+        form.get(inputDate?.controlName).value
+          | errorLabel: form.get(inputDate?.controlName)
+      }}
+    </span>
+  </label>
   <input
     type="date"
-    name="inputText"
     id="inputText"
     class="form-control"
     placeholder=""
@@ -10,11 +18,4 @@
     [min]="inputDate?.min"
     [max]="inputDate?.max"
   />
-  <label class="form-label" for="inputText"> {{ inputDate?.label }} 
-    <span>
-      {{form.get(inputDate?.controlName).value | errorLabel: form.get(inputDate?.controlName)}}
-    </span>
-  </label>
 </div>
-
-<input type="date" []>

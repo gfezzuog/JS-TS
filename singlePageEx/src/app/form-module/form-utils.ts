@@ -12,4 +12,12 @@ export class FormUtils{
         }
         return ''  
     }
+
+    static getMinDate():string {
+    return '2000-01-01';
+  }
+
+  static getMaxDate(): string{
+    return '2030-01-01';
+  }
 }

@@ -5,6 +5,7 @@ import { TvShow } from '../../../models/tvshow.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TvGenresResponse } from '../../../models/tvgenre.model';
 import { TvFormValidatorDirective } from '../../../directives/tv-form-validator.directive';
+import { FormUtils } from '../../form-utils';
 
 @Component({
   selector: 'app-tv-forms',
@@ -12,6 +13,8 @@ import { TvFormValidatorDirective } from '../../../directives/tv-form-validator.
   styleUrls: ['./tv-forms.component.css'],
 })
 export class TvFormsComponent implements OnInit {
+  public formUtils = FormUtils;
+
   tvShow!: TvShow;
   imageUrl!: string;
   createdByString: string = '';
@@ -31,7 +34,7 @@ export class TvFormsComponent implements OnInit {
       Validators.max(600),
     ]),
     overview: new FormControl(null, [Validators.required]),
-    original_language: new FormControl(null, [Validators.maxLength(2)])
+    original_language: new FormControl(null, [Validators.maxLength(2)]),
   });
 
   /* ----------------------------------- */
@@ -43,10 +46,9 @@ export class TvFormsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
-    this.movieForm.get('last_air_date')?.valueChanges.subscribe((pippo)=> {
-      console.log(pippo)
-    })
+    this.movieForm.get('last_air_date')?.valueChanges.subscribe((pippo) => {
+      console.log(pippo);
+    });
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
@@ -69,7 +71,6 @@ export class TvFormsComponent implements OnInit {
     });
 
     /* ----------------------------------- */
-
   }
 
   print() {

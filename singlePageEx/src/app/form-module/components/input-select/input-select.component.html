@@ -1,4 +1,13 @@
-<div class="form-floating my-3">
+<div class="my-3">
+  <label class="form-label" for="{{ inputModel.controlName }}"
+    >{{ inputModel.label
+    }}<span>
+      {{
+        form.get(inputModel.controlName).value
+          | errorLabel: form.get(inputModel.controlName)
+      }}
+    </span></label
+  >
   <select
     [compareWith]="compareWith"
     name="{{ inputModel.controlName }}"
@@ -8,16 +17,14 @@
     *ngIf="options"
     class="form-control"
   >
-    <option [value]="null">Seleziona {{ inputModel.label }}</option>
+    <option [ngValue]="null">Seleziona {{ inputModel.label }}</option>
     <option
       *ngFor="let option of options"
       [ngValue]="option"
-      [label]="option.name"
-    ></option>
+    >
+      {{ option.name }}
+    </option>
   </select>
-  <label for="{{ inputModel.controlName }}"
-    >{{ inputModel.label
-    }}<span *ngIf="form.get(inputModel.controlName).invalid">!</span></label
-  >
+
   <!-- <app-labels-for-everyone [form]="form" [inputModel]="inputModel"></app-labels-for-everyone> -->
 </div>
