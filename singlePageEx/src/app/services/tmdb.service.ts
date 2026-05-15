@@ -12,7 +12,7 @@ import { tvGenre, TvGenresResponse } from '../models/tvgenre.model';
 export class TmdbService {
   private apiUrl = environment.tmdbApiUrl;
 
-  private selectedTvShowId!: number
+  private selectedTvShowId!: number;
 
   constructor(private http: HttpClient) {}
 
@@ -24,19 +24,44 @@ export class TmdbService {
     });
   }
 
+  searchTvShows(query: string = '', page: number = 1): Observable<tmdbGet> {
+    return query
+      ? this.http.get<tmdbGet>(`${this.apiUrl}/search/tv`, {
+          params: { query, page },
+        })
+      : this.getPopularTvShows(page);
+  }
+
   getTvShowDetails(seriesId: number): Observable<TvShow> {
-    return this.http.get<TvShow>(`${this.apiUrl}/tv/${seriesId}`, {
-    });
+    return this.http.get<TvShow>(`${this.apiUrl}/tv/${seriesId}`, {});
   }
 
   getTvShowCredits(seriesId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/tv/${seriesId}/credits`, {
-    });
+    return this.http.get<any>(`${this.apiUrl}/tv/${seriesId}/credits`, {});
   }
-  getTvShowGenres(): Observable<TvGenresResponse>{
-    return this.http.get<TvGenresResponse>(`${this.apiUrl}/genre/tv/list`)
+  getTvShowGenres(): Observable<TvGenresResponse> {
+    return this.http.get<TvGenresResponse>(`${this.apiUrl}/genre/tv/list`);
   }
 
+  public logComponentInitInfo(componentName: string, backgroundColor: string) {
+    console.debug(
+      '%c%s',
+      'background-color: ' +
+        backgroundColor +
+        '; color: #ffffff; padding: 20px 20px',
+      componentName,
+    );
+  }
+
+  public logDebug(message: any, backgroundColor: string) {
+    console.debug(
+      '%c%s',
+      'background-color: ' +
+        backgroundColor +
+        '; color: #ffffff; padding: 10px 10px',
+      message,
+    );
+  }
 }
 
 // https://api.themoviedb.org/3/tv/{series_id}/credits

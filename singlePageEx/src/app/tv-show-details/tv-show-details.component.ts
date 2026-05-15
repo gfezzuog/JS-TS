@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TmdbService } from '../services/tmdb.service';
 import { TvShow } from '../models/tvshow.model';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tv-show-details',
   templateUrl: './tv-show-details.component.html',
   styleUrls: ['./tv-show-details.component.css']
 })
-export class TvShowDetailsComponent implements OnInit {
+export class TvShowDetailsComponent implements OnInit, OnDestroy {
 
   tvShow!: any;
   loader: boolean = true;
   osservabile$!: Observable<any>;
+  destroy$: Subject<any> = new Subject()
 
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +33,9 @@ export class TvShowDetailsComponent implements OnInit {
     const tvId = Number(idParam);
     this.osservabile$ = this.tmdbService.getTvShowCredits(tvId)
     // Chiamata API per il valore tvID passato
-    this.tmdbService.getTvShowDetails(tvId).subscribe({
+    this.tmdbService.getTvShowDetails(tvId).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
       next: (data) => {
         this.tvShow = data;
       },
@@ -43,6 +47,11 @@ export class TvShowDetailsComponent implements OnInit {
             console.log("PERFORZA")
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next()
+    this.destroy$.complete()
   }
 }
 //  setTimeout(() => {

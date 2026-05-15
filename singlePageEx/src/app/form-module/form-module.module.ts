@@ -28,6 +28,9 @@ import { CheckCittadinanzaPipe } from './components/pipes/check-cittadinanza.pip
   imports: [
     CommonModule,
     ReactiveFormsModule,
+  ],
+  exports: [
+    InputTextComponent
   ]
 })
 export class FormModuleModule { }

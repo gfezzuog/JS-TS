@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rps-game',
   templateUrl: './rps-game.component.html',
   styleUrls: ['./rps-game.component.css']
 })
-export class RpsGameComponent implements OnInit {
+export class RpsGameComponent implements OnInit, OnDestroy {
 
   field = new FormControl('0');
 
@@ -15,8 +17,7 @@ export class RpsGameComponent implements OnInit {
   parcheggiTot: number = 0;
   choice: number = 0;
   enemyChoice: number = 0;
-
-
+  destroy$: Subject<any> = new Subject()
   // Options container
   options = [
     {val: 0, cont: "Sasso",},
@@ -62,7 +63,9 @@ export class RpsGameComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void {
-      this.field.valueChanges.subscribe({
+      this.field.valueChanges.pipe(
+        takeUntil(this.destroy$)
+      ).subscribe({
         next(value) {
           console.log(value)
         },
@@ -70,5 +73,9 @@ export class RpsGameComponent implements OnInit {
 
   }
 
+  ngOnDestroy(): void {
+   this.destroy$.next()
+   this.destroy$.complete() 
+  }
 }
 
