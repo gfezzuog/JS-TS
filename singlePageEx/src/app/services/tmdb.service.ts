@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { TvShow } from '../models/tvshow.model';
 import { tmdbGet } from '../models/tmdbget.model';
 import { tvGenre, TvGenresResponse } from '../models/tvgenre.model';
+import { FilmDetails, FilmReview} from '../models/filmfork.model';
 
 @Injectable({
   providedIn: 'root',
@@ -41,6 +42,19 @@ export class TmdbService {
   }
   getTvShowGenres(): Observable<TvGenresResponse> {
     return this.http.get<TvGenresResponse>(`${this.apiUrl}/genre/tv/list`);
+  }
+
+  getFilmDetails(movieId: Number): Observable<FilmDetails>{
+    return this.http.get<FilmDetails>(`${this.apiUrl}/movie/${movieId}`)
+  }
+
+  getFilmsReviews(movieId: Number ): Observable<FilmReview>{
+    return this.http.get<FilmReview>(`${this.apiUrl}/movie/${movieId}/credits`)
+
+  }
+
+  getFilmsPopular(): Observable<any>{
+     return this.http.get<any>(`${this.apiUrl}/movie/popular`)
   }
 
   public logComponentInitInfo(componentName: string, backgroundColor: string) {

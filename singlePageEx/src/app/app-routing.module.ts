@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { InputsComponent } from './inputs/inputs.component';
 import { TvFormsComponent } from './form-module/components/tv-forms/tv-forms.component';
 import { UNILAVComponent } from './form-module/components/unilav/unilav.component';
+import { FilmShowForkComponent } from './film-show-fork/film-show-fork.component';
 
 
 // providers: [
@@ -53,6 +54,10 @@ const routes: Routes = [
   {
     path: 'UNILAV',
     component: UNILAVComponent
+  },
+  {
+    path: 'Films',
+    component: FilmShowForkComponent
   },
   {
     path: '**',

@@ -93,41 +93,17 @@ export class TvListComponent implements OnInit, AfterViewInit, OnDestroy {
     // control?.updateValueAndValidity();
   }
 
-  clearSearch(): void {
-    // this.searchQuery = '';
-    // this.searchMode = false;
-    // this.page = 1;
-    // // if (this.searchInput?.nativeElement) {
-    // //   this.searchInput.nativeElement.value = '';
-    // // }
-    // this.loadTvShows();
-  }
-  /* ----------------------------------- */
 
-  // loadTvShows(): void {
-  //   this.tmdbService.getPopularTvShows(this.page).subscribe(
-  //     (res) => {
-  //       this.tvShows = res.results;
-  //       console.log(this.tvShows);
-  //     },
-  //     (err) => {
-  //       console.error('Error API', err);
-  //       console.log(environment.tmdbToken);
-  //     },
-  //   );
-  // }
 
   nextPage(): void {
     this.page++;
     this.page$.next(this.page);
-    // this.form.get('control')?.updateValueAndValidity();
   }
 
   previousPage(): void {
     if (this.page > 1) {
       this.page--;
       this.page$.next(this.page);
-      // this.form.get('control')?.updateValueAndValidity();
     }
   }
 

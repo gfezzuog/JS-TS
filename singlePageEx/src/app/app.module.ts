@@ -24,6 +24,7 @@ import { CustomValidatorsDirective } from './directives/custom-validators.direct
 import { StringByObjectArrayPipe } from './pipes/string-by-object-array.pipe';
 import { TvFormValidatorDirective } from './directives/tv-form-validator.directive';
 import { FormModuleModule } from './form-module/form-module.module';
+import { FilmShowForkComponent } from './film-show-fork/film-show-fork.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { FormModuleModule } from './form-module/form-module.module';
     CustomValidatorsDirective,
     StringByObjectArrayPipe,
     TvFormValidatorDirective,
+    FilmShowForkComponent,
   ],
   imports: [
     BrowserModule,

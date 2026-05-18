@@ -54,8 +54,3 @@ export class TvShowDetailsComponent implements OnInit, OnDestroy {
     this.destroy$.complete()
   }
 }
-//  setTimeout(() => {
-          //  this.loader = false
-            // console.log("PERFORZA")
-        // }, 5000);
-        // console.log("COMPLETE")

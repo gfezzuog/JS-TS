@@ -11,7 +11,7 @@
   /> -->
 
   <app-input-text [form]="form" [inputModel]="{controlName: 'control', label: 'Filtro Ricerca', type: 'text'}" ></app-input-text>
-  <button *ngIf="searchMode" (click)="clearSearch()" class="btn btn-secondary m-1">Annulla ricerca</button>
+  <button *ngIf="searchMode" class="btn btn-secondary m-1">Annulla ricerca</button>
 
   <div *ngIf="tvShows.length === 0 && searchMode" class="alert alert-warning m-2">
     Nessun risultato per "{{ searchQuery }}"
