@@ -1,130 +1,24 @@
-<div class="container py-4">
-  <div class="row justify-content-center">
-    <div class="col-12 col-lg-10">
-      <div class="card border-secondary mb-4">
-        <div class="card-header bg-secondary text-white">
-          <h3 class="mb-0">Film Populari</h3>
-        </div>
-        <div class="card-body p-0" style="max-height: 80vh; overflow-y: auto">
-          <ng-container *ngIf="forking$ | async as films; else loading">
-            <div *ngIf="films.length > 0; else noFilms">
-              <div *ngFor="let item of films" class="card border-0 rounded-0">
-                <div class="card-body border-bottom">
-                  <div class="d-flex flex-column flex-md-row gap-3">
-                    <div class="flex-shrink-0" *ngIf="item.details.poster_path">
-                      <img
-                        [src]="
-                          'https://image.tmdb.org/t/p/w200' +
-                          item.details.poster_path
-                        "
-                        class="img-fluid rounded"
-                        [alt]="item.details.title"
-                      />
-                    </div>
-                    <div class="flex-grow-1">
-                      <div
-                        class="d-flex justify-content-between align-items-start flex-column flex-sm-row gap-2"
-                      >
-                        <div>
-                          <h5 class="mb-1">{{ item.details.title }}</h5>
-                          <p class="mb-1 text-muted">
-                            {{ item.details.original_title }} ·
-                            {{ item.details.release_date }}
-                          </p>
-                        </div>
-                        <span class="badge bg-secondary"
-                          >ID: {{ item.film.id }}</span
-                        >
-                      </div>
-                      <p class="mb-1">
-                        <strong>Overview:</strong> {{ item.details.overview }}
-                      </p>
-                      <p class="mb-1">
-                        <strong>Runtime:</strong> {{ item.details.runtime }} min
-                      </p>
-                      <p class="mb-1">
-                        <strong>Genres:</strong>
-                        <span
-                          class="text-muted"
-                          >{{ formatGenres(item.details.genres) }}</span
-                        >
-                      </p>
-                      <p class="mb-1">
-                        <strong>Reviews:</strong>
-                        {{ item.reviews.results.length }}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="mt-3">
-                    <div class="row">
-                      <div class="col-12 col-lg-6 mb-3 mb-lg-0">
-                        <div class="p-3 border rounded bg-light">
-                          <h6 class="mb-2">Film details</h6>
-                          <p class="mb-1">
-                            <strong>Original language:</strong>
-                            {{ item.details.original_language }}
-                          </p>
-                          <p class="mb-1">
-                            <strong>Popularity:</strong>
-                            {{ item.details.popularity }}
-                          </p>
-                          <p class="mb-1">
-                            <strong>Vote average:</strong>
-                            {{ item.details.vote_average }}
-                          </p>
-                          <p class="mb-0">
-                            <strong>Vote count:</strong>
-                            {{ item.details.vote_count }}
-                          </p>
-                        </div>
-                      </div>
-                      <div class="col-12 col-lg-6">
-                        <div class="p-3 border rounded bg-light">
-                          <h6 class="mb-2">Latest review</h6>
-                          <ng-container
-                            *ngIf="
-                              item.reviews.results.length;
-                              else noReviewText
-                            "
-                          >
-                            <p class="mb-1">
-                              <strong>{{
-                                item.reviews.results[0].author
-                              }}</strong>
-                              
-                              <span class="text-muted">{{
-                                item.reviews.results[0].updated_at
-                              }}</span>
-                            </p>
-                            <p class="mb-0">
-                              {{ item.reviews.results[0].content }}
-                            </p>
-                          </ng-container>
-                          <ng-template #noReviewText>
-                            <p class="mb-0 text-muted">
-                              Nessuna review disponibile
-                            </p>
-                          </ng-template>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <ng-template #noFilms>
-              <div class="alert alert-warning mb-0">Nessun film trovato.</div>
-            </ng-template>
-          </ng-container>
-        </div>
-      </div>
+<div style="overflow-y: scroll; height: calc(100vh - 80px);">
+  <div
+    *ngIf="loading"
+    style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+      color: #444;
+    "
+  >
+    <mat-spinner></mat-spinner>
+    <div style="margin-top: 12px; font-size: 14px">
+      Giuro che sto caricando
     </div>
   </div>
+  <app-dynamic-table
+    *ngIf="!loading"
+    [dataSource]="dataSource"
+    [displayedColumns]="displayedColumns"
+    [actions]="actions"
+  ></app-dynamic-table>
 </div>
-
-<ng-template #loading>
-  <div class="container py-4">
-    <div class="alert alert-info mb-0">Caricamento dei film in corso...</div>
-  </div>
-</ng-template>

@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './unilav.component.html',
   styleUrls: ['./unilav.component.css'],
 })
+
 export class UNILAVComponent implements OnInit {
   unilavForm = new FormGroup({
     cognome: new FormControl(null, Validators.required),

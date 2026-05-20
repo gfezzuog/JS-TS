@@ -10,6 +10,7 @@ import { InputsComponent } from './inputs/inputs.component';
 import { TvFormsComponent } from './form-module/components/tv-forms/tv-forms.component';
 import { UNILAVComponent } from './form-module/components/unilav/unilav.component';
 import { FilmShowForkComponent } from './film-show-fork/film-show-fork.component';
+import { FilmsDetailsComponent } from './films-details/films-details.component';
 
 
 // providers: [
@@ -58,6 +59,10 @@ const routes: Routes = [
   {
     path: 'Films',
     component: FilmShowForkComponent
+  },
+  {
+    path: 'FilmDetails/:id',
+    component: FilmsDetailsComponent
   },
   {
     path: '**',

@@ -49,7 +49,7 @@ export class TmdbService {
   }
 
   getFilmsReviews(movieId: Number ): Observable<FilmReview>{
-    return this.http.get<FilmReview>(`${this.apiUrl}/movie/${movieId}/credits`)
+    return this.http.get<FilmReview>(`${this.apiUrl}/movie/${movieId}/reviews`)
 
   }
 

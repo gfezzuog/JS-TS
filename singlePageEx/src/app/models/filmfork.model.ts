@@ -1,3 +1,4 @@
+
 export interface FilmReview {
     id:            number;
     page:          number;
@@ -81,3 +82,14 @@ export interface SpokenLanguage {
     iso_639_1:    string;
     name:         string;
 }
+
+export interface FilmForkTableRow extends FilmForkItem {
+  position: number;
+}
+
+export interface FilmForkItem {
+  film: any;
+  details: FilmDetails;
+  reviews: FilmReview;
+}
+

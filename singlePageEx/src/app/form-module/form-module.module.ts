@@ -30,7 +30,8 @@ import { CheckCittadinanzaPipe } from './components/pipes/check-cittadinanza.pip
     ReactiveFormsModule,
   ],
   exports: [
-    InputTextComponent
+    InputTextComponent,
+    InputTextAreaComponent
   ]
 })
 export class FormModuleModule { }

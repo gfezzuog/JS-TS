@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { TmdbService } from './services/tmdb.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -25,6 +23,11 @@ import { StringByObjectArrayPipe } from './pipes/string-by-object-array.pipe';
 import { TvFormValidatorDirective } from './directives/tv-form-validator.directive';
 import { FormModuleModule } from './form-module/form-module.module';
 import { FilmShowForkComponent } from './film-show-fork/film-show-fork.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DynamicTableComponent } from './dynamic-table/dynamic-table.component';
+import { FilmsDetailsComponent } from './films-details/films-details.component';
 
 @NgModule({
   declarations: [
@@ -45,15 +48,19 @@ import { FilmShowForkComponent } from './film-show-fork/film-show-fork.component
     StringByObjectArrayPipe,
     TvFormValidatorDirective,
     FilmShowForkComponent,
+    DynamicTableComponent,
+    FilmsDetailsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     FormModuleModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     {
