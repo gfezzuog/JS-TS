@@ -34,6 +34,7 @@ import { FirstTabComponent } from './first-tab/first-tab.component';
 import { SecondTabComponent } from './second-tab/second-tab.component';
 import { ThirdTabComponent } from './third-tab/third-tab.component';
 import { FilmDialogComponent } from './film-dialog/film-dialog.component';
+import { DynamicDialogComponent } from './dynamic-dialog/dynamic-dialog.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { FilmDialogComponent } from './film-dialog/film-dialog.component';
     SecondTabComponent,
     ThirdTabComponent,
     FilmDialogComponent,
+    DynamicDialogComponent,
   ],
   imports: [
     BrowserModule,

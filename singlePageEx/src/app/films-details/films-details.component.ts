@@ -8,7 +8,11 @@ import { FilmDetails, FilmReview, Result } from '../models/filmfork.model';
 import { forkJoin, Observable, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { FilmDialogComponent, FormReviewFilm } from '../film-dialog/film-dialog.component';
+import {
+  FilmDialogComponent,
+  FormReviewFilm,
+} from '../film-dialog/film-dialog.component';
+import { DynamicDialogComponent } from '../dynamic-dialog/dynamic-dialog.component';
 
 export interface FilmReviewTableRow {
   filmTitle: string;
@@ -25,49 +29,86 @@ export interface FilmReviewTableRow {
   styleUrls: ['./films-details.component.css'],
 })
 export class FilmsDetailsComponent implements OnInit, OnDestroy {
-
-  rows: FilmReviewTableRow[] = [];
+  rowsArray: FilmReviewTableRow[] = [];
   id: Number = Number(this.route.snapshot.paramMap.get('id'));
   filmDetails$?: Observable<any>;
   destroy$: Subject<any> = new Subject();
   reviewsArray!: FormArray;
-
+  // tableForm!: FormGroup
+  formInvalid: boolean = false;
 
   reviewActions: ActionTable<FilmReviewTableRow>[] = [
     {
       classes: 'fa-solid fa-magnifying-glass',
       onClick: (row, index) => {
-
-
         const dialogRef = this.dialog.open(FilmDialogComponent, {
           data: { review: row },
           width: '900px',
           height: '600px',
-          panelClass: 'custom-dialog'
+          panelClass: 'custom-dialog',
         });
 
         dialogRef.afterClosed().subscribe((updated) => {
           if (updated) {
-            this.rows[index] = {
-              ...this.rows[index],
+            this.rowsArray[index] = {
+              // ...this.rowsArray[index],
               ...updated,
             };
-            this.reviewDataSource.data = [...this.rows]; // aggiorna datasource
+            this.reviewDataSource.data = [...this.rowsArray]; // aggiorna datasource
             // const formArray = this.formArray(); // aggiorna FormArray
             this.formArray().at(index).patchValue(updated);
+            // this.formInvalid = !updated.valid
+            console.log(this.filmFormDetails);
           }
         });
       },
     },
     {
       classes: 'fa-solid fa-exclamation',
-      onClick : () => {},
-      onShow: ((row) => {
-        const form = new FormReviewFilm()
-        form.patchValue(row)
-        return (form.invalid)
-      })
-    }
+      onClick: () => {},
+      onShow: (row) => {
+        const form = new FormReviewFilm();
+        form.patchValue(row);
+        return form.invalid;
+      },
+    },
+    {
+      classes: 'fa-solid fa-eraser',
+
+      onClick: (row, index) => {
+        const dialogRef = this.dialog.open(DynamicDialogComponent, {
+          width: '900px',
+          height: '600px',
+          data: {
+            title: 'Conferma eliminazione',
+            message: `Vuoi eliminare la review di ${row.author}?`,
+            payload: { row, index },
+            actions: [
+              {
+                label: 'Annulla',
+                class: 'btn-secondary',
+                value: 'cancel'
+              },
+              {
+                label: 'Elimina',
+                class: 'btn-danger',
+                value: 'confirm'
+              },
+            ],
+          },
+        });
+
+        dialogRef.afterClosed().subscribe((res) => {
+          if (!res || res.action !== 'confirm') return;
+
+          const i = res.payload.index;
+
+          this.rowsArray.splice(i, 1); //Rimuove dalla tabella
+          this.reviewDataSource.data = [...this.rowsArray];
+          this.formArray().removeAt(i); //Rimuove dal secondo tab
+        });
+      },
+    },
   ];
 
   reviewDataSource = new MatTableDataSource<FilmReviewTableRow>([]);
@@ -124,7 +165,7 @@ export class FilmsDetailsComponent implements OnInit, OnDestroy {
 
     this.filmDetails$.subscribe((res) => {
       this.filmFormDetails.patchValue(res.details);
-      this.rows = res.review.results.map((element: Result) => {
+      this.rowsArray = res.review.results.map((element: Result) => {
         const row: FilmReviewTableRow = {
           filmTitle: res.details.title || res.details.original_title,
           original_language: res.details.original_language,
@@ -133,7 +174,7 @@ export class FilmsDetailsComponent implements OnInit, OnDestroy {
           rating: element.author_details?.rating ?? null,
           createdAt: element.created_at,
         };
-        const form = new ReviewForm();
+        const form = new FormReviewFilm();
         form.patchValue(element);
         (
           this.filmFormDetails
@@ -143,7 +184,7 @@ export class FilmsDetailsComponent implements OnInit, OnDestroy {
         return row;
       });
 
-      this.reviewDataSource.data = this.rows;
+      this.reviewDataSource.data = this.rowsArray;
     });
     console.log(this.filmFormDetails.get('filmFormReviews'));
   }

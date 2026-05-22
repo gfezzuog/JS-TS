@@ -1,0 +1,25 @@
+<div class="dialog-wrapper d-flex">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h2>{{ data.title }}</h2>
+  </div>
+
+  <!-- CONTENUTO -->
+  <div class="content">
+    <p>{{ data.message }}</p>
+  </div>
+
+  <!-- AZIONI DINAMICHE -->
+  <div class="actions">
+    <button
+      *ngFor="let action of data.actions"
+      class="btn"
+      [ngClass]="action.class"
+      (click)="onAction(action)"
+    >
+      {{ action.label }}
+    </button>
+  </div>
+
+</div>

@@ -3,17 +3,17 @@
     <div class="form-group">
       <mat-tab-group mat-align-tabs="start">
         <!-- PRIMO TAB: DETAILS -->
-        <mat-tab label="First">
+        <mat-tab [label]=" filmFormDetails.invalid ? 'First !' : 'First' ">
          <app-first-tab [form]="filmFormDetails"></app-first-tab>
         </mat-tab>
 
         <!-- SECONDO TAB -->
-        <mat-tab label="Second"> 
+        <mat-tab [label]=" filmFormDetails.invalid ? 'Second !' : 'Second' "> 
           <app-second-tab [form]="filmFormDetails"></app-second-tab>
         </mat-tab>
 
         <!-- THIRD TAB -->
-        <mat-tab label="Third">
+        <mat-tab [label]="formArray().invalid ? 'Third !' : 'Third'">
           <app-dynamic-table
             [dataSource]="reviewDataSource"
             [displayedColumns]="reviewDisplayedColumns"
