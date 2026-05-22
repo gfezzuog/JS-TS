@@ -14,11 +14,11 @@
     /* width: 200px; */
 }
 
-.header
+/* .header
 {
     border: solid 1px black;
     height: 80px;
-}
+} */
 
 .self-center
 {
@@ -73,3 +73,48 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Kablammo", system-ui;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+/*  FIX DIALOG ANGULAR MATERIAL */
+
+
+/* CONTAINER */
+.cdk-overlay-pane.custom-dialog .mat-mdc-dialog-container {
+  padding: 0 !important;
+}
+
+.mat-dialog-container {
+  padding: 0 !important;
+}
+
+/* elimina scroll/overflow Material */
+.cdk-overlay-pane.custom-dialog .mat-mdc-dialog-surface {
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+/* disabilita auto */
+.cdk-overlay-pane.custom-dialog .mat-mdc-dialog-content {
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  max-height: none !important;
+}

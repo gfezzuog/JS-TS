@@ -14,17 +14,20 @@
 
       <!-- Table Cell for special action column -->
       <ng-template #action>
-        <td mat-cell *matCellDef="let element">
-          <button (click)="action.onClick(element)" *ngFor="let action of actions">
+        <td mat-cell *matCellDef="let element; let i = index">
+          <ng-container *ngFor="let action of actions">
+            <button
+              (click)="action.onClick(element, i)"
+              *ngIf="action.onShow == undefined || action.onShow(element)"
+            >
               <i [ngClass]="action.classes"></i>
-
-          </button>
+            </button>
+          </ng-container>
         </td>
       </ng-template>
     </ng-container>
   </ng-container>
- 
+
   <tr mat-header-row *matHeaderRowDef="rowDef"></tr>
   <tr mat-row *matRowDef="let row; columns: rowDef"></tr>
 </table>
-

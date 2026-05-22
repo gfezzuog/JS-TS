@@ -1,0 +1,39 @@
+ <div class="container-fluid form-group">
+            <div class="row align">
+              <div class="col-6 form-group">
+                <!-- Details Titolo Originale -->
+                <app-input-text
+                  [form]="form"
+                  [inputModel]="{
+                    controlName: 'original_title',
+                    label: 'Titolo Originale',
+                    type: 'text'
+                  }"
+                >
+                </app-input-text>
+              </div>
+              <div class="col-6 form-group">
+                <!-- Details Lingua Originale -->
+                <app-input-text
+                  [form]="form"
+                  [inputModel]="{
+                    controlName: 'original_language',
+                    label: 'Lingua Originale',
+                    type: 'text'
+                  }"
+                >
+                </app-input-text>
+              </div>
+              <div class="col-12 form-group">
+                <!-- Details Overview -->
+                <app-input-text-area
+                  [form]="form"
+                  [inputModel]="{
+                    controlName: 'overview',
+                    label: 'Overview',
+                    type: 'text'
+                  }"
+                ></app-input-text-area>
+              </div>
+            </div>
+          </div>

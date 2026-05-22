@@ -3,39 +3,52 @@ import { forkJoin, Observable, of, Subject } from 'rxjs';
 import { map, switchMap, takeUntil, tap, finalize } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
 import { TmdbService } from '../services/tmdb.service';
-import { FilmDetails, FilmForkItem, FilmForkTableRow, FilmReview } from '../models/filmfork.model';
+import {
+  FilmDetails,
+  FilmForkItem,
+  FilmForkTableRow,
+  FilmReview,
+} from '../models/filmfork.model';
 import { ActionTable, DisplayedColumn } from '../models/mattable.model';
 import { Router } from '@angular/router';
-
-
 
 @Component({
   selector: 'app-film-show-fork',
   templateUrl: './film-show-fork.component.html',
   styleUrls: ['./film-show-fork.component.css'],
 })
-
 export class FilmShowForkComponent implements OnInit, OnDestroy {
-
-  loading = true
-  destroy$ : Subject<any> = new Subject()
+  loading = true;
+  destroy$: Subject<any> = new Subject();
   // Colonne definite in modo generico per il tipo FilmForkTableRow
+
+
   displayedColumns: DisplayedColumn<FilmForkTableRow>[] = [
     { property: 'position', label: 'No.', content: (row) => row.position },
-    { property: 'original_title', label: 'Titolo', content: (row: FilmForkTableRow) => row.film.original_title },
+    {
+      property: 'original_title',
+      label: 'Titolo',
+      content: (row: FilmForkTableRow) => row.film.original_title,
+    },
     { property: 'test', label: 'Prova', content: () => 'Dovrebbe funzionare' },
-    { property: 'azioni', label: 'Azioni', isAction: true, content: () => '' } // colonna speciale azione
+    { property: 'azioni', label: 'Azioni', isAction: true, content: () => '' }, // colonna speciale azione
   ];
+
+
   actions: ActionTable<FilmForkTableRow>[] = [
     // {classes: 'fa-solid fa-pen-to-square', onClick: (row) => {console.log(row)}},
-    {classes: 'fa-solid fa-magnifying-glass', onClick: (row) => this.router.navigate(["FilmDetails",  row.details.id])}
-    
+    {
+      classes: 'fa-solid fa-magnifying-glass',
+      onClick: (row) => this.router.navigate(['FilmDetails', row.details.id]),
+    },];
 
-  ]
-  dataSource = new MatTableDataSource<FilmForkTableRow>([]); 
+  dataSource = new MatTableDataSource<FilmForkTableRow>([]);
   forking$!: Observable<FilmForkItem[]>;
 
-  constructor(private tmdbService: TmdbService, private router: Router) {}
+  constructor(
+    private tmdbService: TmdbService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     const stringa = 'pippo';
@@ -51,10 +64,10 @@ export class FilmShowForkComponent implements OnInit, OnDestroy {
         this.dataSource.data = tableRows;
       }),
       finalize(() => {
-        this.loading = false
+        this.loading = false;
       }),
     );
-    this.forking$.pipe(takeUntil(this.destroy$)).subscribe()
+    this.forking$.pipe(takeUntil(this.destroy$)).subscribe();
   }
 
   private loadFilmForkItems(response: any): Observable<FilmForkItem[]> {
@@ -107,7 +120,7 @@ export class FilmShowForkComponent implements OnInit, OnDestroy {
   // }
 
   ngOnDestroy(): void {
-    this.destroy$.next()
-    this.destroy$.complete()
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

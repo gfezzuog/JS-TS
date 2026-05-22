@@ -1,0 +1,89 @@
+<div class="dialog-wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Modifica Recensione</h1>
+  </div>
+
+  <!-- CONTENUTO -->
+  <div class="content">
+    <div class="container-fluid p-0">
+      <div class="row">
+
+        <div class="col-6">
+          <app-input-text
+            [form]="formReview"
+            [inputModel]="{
+              controlName: 'filmTitle',
+              label: 'Titolo del film',
+              type: 'text'
+            }">
+          </app-input-text>
+        </div>
+
+        <div class="col-6">
+          <app-input-text
+            [form]="formReview"
+            [inputModel]="{
+              controlName: 'author',
+              label: 'Autore',
+              type: 'text'
+            }">
+          </app-input-text>
+        </div>
+
+        <div class="col-6">
+          <app-input-text
+            [form]="formReview"
+            [inputModel]="{
+              controlName: 'createdAt',
+              label: 'Creato il',
+              type: 'text'
+            }">
+          </app-input-text>
+        </div>
+
+        <div class="col-6">
+          <app-input-text
+            [form]="formReview"
+            [inputModel]="{
+              controlName: 'original_language',
+              label: 'Lingua Originale',
+              type: 'text'
+            }">
+          </app-input-text>
+        </div>
+
+        <div class="col-6">
+          <app-input-text
+            [form]="formReview"
+            [inputModel]="{
+              controlName: 'rating',
+              label: 'Rating',
+              type: 'text'
+            }">
+          </app-input-text>
+        </div>
+
+        <div class="col-12">
+          <app-input-text-area
+            [form]="formReview"
+            [inputModel]="{
+              controlName: 'content',
+              label: 'Review',
+              type: 'text'
+            }">
+          </app-input-text-area>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="actions">
+    <button class="btn btn-primary" [disabled]="formReview.invalid" (click)="close(true)">Salva</button>
+    <button class="btn btn-secondary" (click)="close()">Chiudi</button>
+  </div>
+
+</div>

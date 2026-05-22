@@ -1,41 +1,26 @@
 <div style="overflow-y: scroll; height: calc(100vh - 80px)">
-  <form [formGroup]="filmForm">
-    <div class="container-fluid form-group">
-      <div class="row align">
-        <div class="col-6 form-group">
-          <!-- Renderizzo il componente solo se il FormControl esiste per evitare accesso a null -->
-          <app-input-text
-            [form]="filmForm"
-            [inputModel]="{
-              controlName: 'original_title',
-              label: 'Titolo Originale',
-              type: 'text'
-            }"
-          >
-          </app-input-text>
-        </div>
-        <div class="col-6 form-group">
-          <app-input-text
-            [form]="filmForm"
-            [inputModel]="{
-              controlName: 'original_language',
-              label: 'Lingua Originale',
-              type: 'text'
-            }"
-          >
-          </app-input-text>
-        </div>
-        <div class="col-12 form-group">
-          <app-input-text-area
-            [form]="filmForm"
-            [inputModel]="{
-              controlName: 'overview',
-              label: 'Overview',
-              type: 'text'
-            }"
-          ></app-input-text-area>
-        </div>
-      </div>
+  <form [formGroup]="filmFormDetails">
+    <div class="form-group">
+      <mat-tab-group mat-align-tabs="start">
+        <!-- PRIMO TAB: DETAILS -->
+        <mat-tab label="First">
+         <app-first-tab [form]="filmFormDetails"></app-first-tab>
+        </mat-tab>
+
+        <!-- SECONDO TAB -->
+        <mat-tab label="Second"> 
+          <app-second-tab [form]="filmFormDetails"></app-second-tab>
+        </mat-tab>
+
+        <!-- THIRD TAB -->
+        <mat-tab label="Third">
+          <app-dynamic-table
+            [dataSource]="reviewDataSource"
+            [displayedColumns]="reviewDisplayedColumns"
+            [actions]="reviewActions"
+          ></app-dynamic-table>
+        </mat-tab>
+      </mat-tab-group>
     </div>
   </form>
 </div>

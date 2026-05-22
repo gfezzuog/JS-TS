@@ -23,8 +23,8 @@ export class DynamicTableComponent<T = any> implements OnInit {
     this.rowDef = this.displayedColumns.map((column) => column.property)
   }
 
-  navTo(route: any[], specific : string = ""): void {
-    this.router.navigate(route)
-  }
+  // navTo(route: any[], specific : string = ""): void {
+  //   this.router.navigate(route)
+  // }
 
 }

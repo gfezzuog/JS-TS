@@ -26,8 +26,14 @@ import { FilmShowForkComponent } from './film-show-fork/film-show-fork.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
 import { DynamicTableComponent } from './dynamic-table/dynamic-table.component';
 import { FilmsDetailsComponent } from './films-details/films-details.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { FirstTabComponent } from './first-tab/first-tab.component';
+import { SecondTabComponent } from './second-tab/second-tab.component';
+import { ThirdTabComponent } from './third-tab/third-tab.component';
+import { FilmDialogComponent } from './film-dialog/film-dialog.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +56,10 @@ import { FilmsDetailsComponent } from './films-details/films-details.component';
     FilmShowForkComponent,
     DynamicTableComponent,
     FilmsDetailsComponent,
+    FirstTabComponent,
+    SecondTabComponent,
+    ThirdTabComponent,
+    FilmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +71,8 @@ import { FilmsDetailsComponent } from './films-details/films-details.component';
     BrowserAnimationsModule,
     MatTableModule,
     MatProgressSpinnerModule,
+    MatTabsModule,
+    MatDialogModule,
   ],
   providers: [
     {

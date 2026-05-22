@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row align">
+    <div class="col-6 form-group" *ngFor="let form of controlsArray?.controls">
+      <app-input-text
+        [form]="form"
+        [inputModel]="{
+          controlName: 'author',
+          label: 'author',
+          type: 'text'
+        }"
+      >
+      </app-input-text>
+
+      <app-input-text
+        [form]="form"
+        [inputModel]="{
+          controlName: 'content',
+          label: 'content',
+          type: 'text'
+        }"
+      >
+      </app-input-text>
+    </div>
+  </div>
+</div>
