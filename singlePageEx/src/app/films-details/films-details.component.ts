@@ -6,13 +6,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TmdbService } from '../services/tmdb.service';
 import { FilmDetails, FilmReview, Result } from '../models/filmfork.model';
 import { forkJoin, Observable, Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+import { filter, take, takeUntil } from 'rxjs/operators';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import {
   FilmDialogComponent,
   FormReviewFilm,
 } from '../film-dialog/film-dialog.component';
 import { DynamicDialogComponent } from '../dynamic-dialog/dynamic-dialog.component';
+import { error } from '@angular/compiler/src/util';
 
 export interface FilmReviewTableRow {
   filmTitle: string;
@@ -41,25 +42,31 @@ export class FilmsDetailsComponent implements OnInit, OnDestroy {
     {
       classes: 'fa-solid fa-magnifying-glass',
       onClick: (row, index) => {
-        const dialogRef = this.dialog.open(FilmDialogComponent, {
-          data: { review: row },
+        const dialogRef = this.dialog.open(DynamicDialogComponent, {
           width: '900px',
           height: '600px',
           panelClass: 'custom-dialog',
+          data: {
+            type: 'form', // 🔥 importante per distinguere layout
+            title: 'Modifica Recensione',
+            payload: {
+              row,
+              index,
+            },
+          },
         });
 
-        dialogRef.afterClosed().subscribe((updated) => {
-          if (updated) {
-            this.rowsArray[index] = {
-              // ...this.rowsArray[index],
-              ...updated,
-            };
-            this.reviewDataSource.data = [...this.rowsArray]; // aggiorna datasource
-            // const formArray = this.formArray(); // aggiorna FormArray
-            this.formArray().at(index).patchValue(updated);
-            // this.formInvalid = !updated.valid
-            console.log(this.filmFormDetails);
-          }
+        dialogRef.afterClosed().pipe(
+          takeUntil(this.destroy$)
+        ).subscribe((res) => {
+          if (!res || res.action !== 'save') return;
+
+          this.rowsArray[index] = {
+            ...res.payload,
+          };
+
+          this.reviewDataSource.data = [...this.rowsArray];
+          this.formArray().at(index).patchValue(res.payload);
         });
       },
     },
@@ -87,26 +94,28 @@ export class FilmsDetailsComponent implements OnInit, OnDestroy {
               {
                 label: 'Annulla',
                 class: 'btn-secondary',
-                value: 'cancel'
+                value: 'cancel',
               },
               {
                 label: 'Elimina',
                 class: 'btn-danger',
-                value: 'confirm'
+                value: 'confirm',
               },
             ],
           },
         });
 
-        dialogRef.afterClosed().subscribe((res) => {
-          if (!res || res.action !== 'confirm') return;
-
-          const i = res.payload.index;
-
-          this.rowsArray.splice(i, 1); //Rimuove dalla tabella
+        dialogRef.afterClosed().pipe(
+          filter((res)=> res.action == 'confirm'),
+          takeUntil(this.destroy$)
+        ).subscribe((res) => {
+          console.log(res)
+          this.rowsArray.splice(index, 1); //Rimuove dalla tabella
           this.reviewDataSource.data = [...this.rowsArray];
-          this.formArray().removeAt(i); //Rimuove dal secondo tab
-        });
+          this.formArray().removeAt(index); //Rimuove dal secondo tab
+        }), 
+        (error: any) => console.log(error);
+        ()=> console.log("Una qualsiasi cosa")  
       },
     },
   ];
@@ -148,16 +157,6 @@ export class FilmsDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // Calcola l'ordine delle colonne direttamente dalla configurazione generica
-    // this.rowDef = this.displayedColumns.map((column: DisplayedColumn<T>) => column.property)
-    // this.filmDetails$ = this.tmdbService.getFilmDetails(
-    //   Number(this.route.snapshot.paramMap.get('id')),
-    // );
-    // this.filmDetails$.pipe(
-    //   takeUntil(this.destroy$),
-    //   tap(val => console.log(val))
-    // ).subscribe((res)=> this.filmFormDetails.patchValue(res));
-
     this.filmDetails$ = forkJoin({
       details: this.tmdbService.getFilmDetails(this.id),
       review: this.tmdbService.getFilmsReviews(this.id),
@@ -209,3 +208,13 @@ export class ReviewForm extends FormGroup {
     });
   }
 }
+
+// Calcola l'ordine delle colonne direttamente dalla configurazione generica
+// this.rowDef = this.displayedColumns.map((column: DisplayedColumn<T>) => column.property)
+// this.filmDetails$ = this.tmdbService.getFilmDetails(
+//   Number(this.route.snapshot.paramMap.get('id')),
+// );
+// this.filmDetails$.pipe(
+//   takeUntil(this.destroy$),
+//   tap(val => console.log(val))
+// ).subscribe((res)=> this.filmFormDetails.patchValue(res));
